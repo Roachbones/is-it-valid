@@ -17,4 +17,6 @@ As of August 2019, Twitter API does not let you do the first step, but it lets y
 
 So, the solution used here was to repeatedly do the first step in a browser while recording the returned `card_uri`s to use later. This was done by using a browser extension to block requests to `https://api.twitter.com/1.1/statuses/update.json` from being sent, and then repeatedly clicking the Tweet button. The requests sent to `https://caps.twitter.com/v2/cards/create.json` were exported to `poll_hacking/requests.har` and then processed by `poll_hacking/card_lister.py`.
 
-This approach works because we know what kind of polls we want to post before we post them, because all of this bot's poll cards are identical; a yes/no poll with a duration of one day. If you want to dynamically post polls with answers that you can't predict ahead of time, then this approach won't work.
+Once we have the list of `card_uri`s, the bot can pop them from the list whenever it needs to post a poll. Note that you *can* use the same `card_uri` more than once, but then you have the same synchronized poll on more than one tweet, which we don't want.
+
+This approach works because we know what kind of polls we want to post before we post them, because all of this bot's poll cards are identical; a yes/no poll with a duration of one day. If you want to dynamically post polls with answers that you can't predict ahead of time, then this approach won't work for you.
