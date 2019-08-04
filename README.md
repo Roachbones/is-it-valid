@@ -13,7 +13,7 @@ The creation of a poll-tweet has two steps:
 1. A request to create the poll "card", (to `https://caps.twitter.com/v2/cards/create.json`), returning the `card_uri` associated with the newly created poll. This doesn't actually publish the poll anywhere, it just makes it available to publish with the second step.
 2. A request to publish a tweet with that poll attached to it (to `https://api.twitter.com/1.1/statuses/update.json`).
 
-As of August 2019, Twitter API does not let you do the first part, but it lets you do the second, as long as you have the `card_uri` associated with the poll that you want to post.
+As of August 2019, Twitter API does not let you do the first step, but it lets you do the second, as long as you have the `card_uri` associated with the poll that you want to post.
 
 So, the solution used here was to repeatedly do the first step in a browser while recording the returned `card_uri`s to use later. This was done by using a browser extension to block requests to `https://api.twitter.com/1.1/statuses/update.json` from being sent, and then repeatedly clicking the Tweet button. The requests sent to `https://caps.twitter.com/v2/cards/create.json` were exported to `poll_hacking/requests.har` and then processed by `poll_hacking/card_lister.py`.
 
