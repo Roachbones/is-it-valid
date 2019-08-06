@@ -29,7 +29,6 @@ def tweet_poll(question):
         driver.add_cookie(cookie)
 
     driver.get("https://twitter.com/compose/tweet")
-    #let all the javascript settle down
     
     actions = webdriver.ActionChains(driver)
     #let all the javascript settle down
@@ -38,12 +37,13 @@ def tweet_poll(question):
     actions.send_keys(question)
     #navigate to the add poll button
     actions.send_keys(Keys.TAB * 3)
-    #activate the add poll button
+    #press the add poll button
     actions.send_keys(Keys.ENTER)
     #wait for poll card to slide in
     actions.pause(1)
     actions.perform()
-    
+
+    #now that these exist, find them
     choice1_box = driver.find_element_by_name("Choice1")
     choice2_box = driver.find_element_by_name("Choice2")
 
@@ -51,8 +51,9 @@ def tweet_poll(question):
     #type into the answer boxes
     actions.send_keys_to_element(choice1_box, "yes")
     actions.send_keys_to_element(choice2_box, "no")
-    #press Ctrl + Enter to send the tweet
-    actions.key_down(Keys.CONTROL)
+    #navigate to the Tweet button
+    actions.send_keys(Keys.TAB * 8)
+    #press the tweet button
     actions.send_keys(Keys.ENTER)
     #wait for the tweet to send before we quit
     actions.pause(4)
