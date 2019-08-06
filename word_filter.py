@@ -35,7 +35,7 @@ plural_nouns = []
 uncountable_nouns = []
 
 def wiktwords(): #generator, yields all wiktextract entries in order
-    with open("wikt.words","r",encoding="utf-8") as file:
+    with open("words/wikt.words","r",encoding="utf-8") as file:
         for line in file:
             yield json.loads(line)
 

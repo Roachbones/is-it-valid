@@ -1,5 +1,4 @@
-secret_keys.txt
 __pycache__/
-wikt.words
-poll_hacking/requests.har
-poll_hacking/card_uris.txt
+selenium/*.log
+selenium/cookies.json
+words/wikt.words
