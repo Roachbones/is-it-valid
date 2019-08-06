@@ -1,4 +1,4 @@
 __pycache__/
-selenium/*.log
-selenium/cookies.json
+*.log
+cookies.json
 words/wikt.words
