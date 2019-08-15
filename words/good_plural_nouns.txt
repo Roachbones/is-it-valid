@@ -21,7 +21,6 @@ lips
 preferences
 brothers
 sisters
-dans
 seas
 teeth
 clothes
@@ -1146,7 +1145,6 @@ finances
 disorders
 specialists
 strips
-blacks
 strains
 scores
 rewards
@@ -1618,8 +1616,6 @@ dildos
 launches
 chargers
 connectors
-mins
-fotos
 highlands
 highs
 pathways
