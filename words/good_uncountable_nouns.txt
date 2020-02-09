@@ -218,7 +218,6 @@ notation
 rotation
 exposure
 mercy
-manchester
 flex
 revision
 welfare
