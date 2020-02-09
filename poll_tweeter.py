@@ -32,7 +32,7 @@ def tweet_poll(question):
     
     actions = webdriver.ActionChains(driver)
     #let all the javascript settle down
-    actions.pause(8)
+    actions.pause(16)
     #type the tweet. the box should already be focused.
     actions.send_keys(question)
     #navigate to the add poll button
