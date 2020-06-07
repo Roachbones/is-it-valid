@@ -106,13 +106,13 @@ print(len(singular_nouns), "singular nouns")
 print(len(plural_nouns), "plural nouns")
 print(len(uncountable_nouns), "uncountable nouns")
 
-with open("words/good_transitive_verbs.txt","w",encoding="utf-8") as file:
+with open("words/generated_transitive_verbs.txt","w",encoding="utf-8") as file:
     file.write("\n".join(transitive_verbs))
-with open("words/good_singular_nouns.txt","w",encoding="utf-8") as file:
+with open("words/generated_singular_nouns.txt","w",encoding="utf-8") as file:
     file.write("\n".join(singular_nouns))
-with open("words/good_plural_nouns.txt","w",encoding="utf-8") as file:
+with open("words/generated_plural_nouns.txt","w",encoding="utf-8") as file:
     file.write("\n".join(plural_nouns))
-with open("words/good_uncountable_nouns.txt","w",encoding="utf-8") as file:
+with open("words/generated_uncountable_nouns.txt","w",encoding="utf-8") as file:
     file.write("\n".join(uncountable_nouns))
 
 print("done! :3")

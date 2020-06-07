@@ -10,18 +10,19 @@ p = inflect.engine() #this is just for p.a(noun)
 basic_innocence_levels = ["valid","problematic"]
 bonus_innocence_levels = [
     "homophobic","bigoted","transphobic","cursed",
-    "racist","sexy","blessed","anti-gamer"
+    "sexy","blessed","anti-gamer",
+    "safe","okay","cool","legal","against the rules"
 ]
 
-with open("words/good_transitive_verbs.txt", "r", encoding="utf-8") as file:
+with open("words/generated_transitive_verbs.txt", "r", encoding="utf-8") as file:
     verbs = file.read().split("\n")
 
 noun_tuples = [] #like [("product","s"),("tables","p"),("craft","u")...]
-with open("words/good_singular_nouns.txt","r",encoding="utf-8") as file:
+with open("words/generated_singular_nouns.txt","r",encoding="utf-8") as file:
     noun_tuples.extend((i, "s") for i in file.read().split("\n"))
-with open("words/good_plural_nouns.txt","r",encoding="utf-8") as file:
+with open("words/generated_plural_nouns.txt","r",encoding="utf-8") as file:
     noun_tuples.extend((i, "p") for i in file.read().split("\n"))
-with open("words/good_uncountable_nouns.txt","r",encoding="utf-8") as file:
+with open("words/generated_uncountable_nouns.txt","r",encoding="utf-8") as file:
     noun_tuples.extend((i, "u") for i in file.read().split("\n"))
 
 def pick_innocence():
