@@ -10,7 +10,6 @@ hack
 complete
 visit
 bite
-talk
 tear
 read
 translate
