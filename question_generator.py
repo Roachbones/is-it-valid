@@ -9,8 +9,8 @@ p = inflect.engine() #this is just for p.a(noun)
 
 basic_innocence_levels = ["valid","problematic"]
 bonus_innocence_levels = [
-    "homophobic","bigoted","transphobic","cursed",
-    "sexy","blessed","anti-gamer",
+    "homophobic","bigoted","transphobic",
+    "cursed","sexy","blessed","anti-gamer",
     "safe","okay","cool","legal","against the rules"
 ]
 
