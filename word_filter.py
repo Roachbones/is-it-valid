@@ -19,7 +19,7 @@ MINIMUM_WORD_LENGTH = 4
 with open("words/blacklist.txt","r",encoding="utf-8") as file:
     blacklist = file.read().split("\n")
 
-COMMONNESS_LIMIT = 4375348 #see words/count_1w.txt
+COMMONNESS_LIMIT = 3375348 #see words/count_1w.txt
 common_words = []
 with open("words/count_1w.txt","r",encoding="utf-8") as file:
     for line in file:
@@ -106,14 +106,17 @@ print(len(singular_nouns), "singular nouns")
 print(len(plural_nouns), "plural nouns")
 print(len(uncountable_nouns), "uncountable nouns")
 
-with open("words/generated_transitive_verbs.txt","w",encoding="utf-8") as file:
-    file.write("\n".join(transitive_verbs))
-with open("words/generated_singular_nouns.txt","w",encoding="utf-8") as file:
-    file.write("\n".join(singular_nouns))
-with open("words/generated_plural_nouns.txt","w",encoding="utf-8") as file:
-    file.write("\n".join(plural_nouns))
-with open("words/generated_uncountable_nouns.txt","w",encoding="utf-8") as file:
-    file.write("\n".join(uncountable_nouns))
+with open("words/generated.json","w",encoding="utf8") as file:
+    json.dump(
+        {
+            "transitive_verbs": transitive_verbs,
+            "singular_nouns": singular_nouns,
+            "plural_nouns": plural_nouns,
+            "uncountable_nouns": uncountable_nouns
+        },
+        file,
+        indent=4
+    )
 
 print("done! :3")
 

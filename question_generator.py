@@ -5,6 +5,7 @@ generate questions for the bot to ask.
 
 import random
 import inflect
+import curated
 p = inflect.engine() #this is just for p.a(noun)
 
 basic_innocence_levels = ["valid","problematic"]
@@ -14,16 +15,12 @@ bonus_innocence_levels = [
     "safe","okay","cool","legal","against the rules"
 ]
 
-with open("words/generated_transitive_verbs.txt", "r", encoding="utf-8") as file:
-    verbs = file.read().split("\n")
+noun_tuples = [] #like [("product","s"),("tables","p"),("food","u")...]
 
-noun_tuples = [] #like [("product","s"),("tables","p"),("craft","u")...]
-with open("words/generated_singular_nouns.txt","r",encoding="utf-8") as file:
-    noun_tuples.extend((i, "s") for i in file.read().split("\n"))
-with open("words/generated_plural_nouns.txt","r",encoding="utf-8") as file:
-    noun_tuples.extend((i, "p") for i in file.read().split("\n"))
-with open("words/generated_uncountable_nouns.txt","r",encoding="utf-8") as file:
-    noun_tuples.extend((i, "u") for i in file.read().split("\n"))
+noun_tuples.extend((i, "singular") for i in curated.singular_nouns)
+noun_tuples.extend((i, "plural") for i in curated.plural_nouns)
+noun_tuples.extend((i, "uncountable") for i in curated.uncountable_nouns)
+noun_tuples.extend((i, "articled") for i in curated.articled_nouns)
 
 def pick_innocence():
     if random.random() < 0.8:
@@ -31,34 +28,39 @@ def pick_innocence():
     else:
         return random.choice(bonus_innocence_levels)
 def pick_noun():
-    noun, flavor = random.choice(noun_tuples)
-    if flavor == "u":
-        if random.random() < 0.8:
-            return noun
-        else:
-            return "the " + noun
-    if flavor == "s":
+    noun, plurality = random.choice(noun_tuples)
+    if plurality == "singular":
         return random.choice((
             p.a(noun),
             "the " + noun,
             "my " + noun
         ))
-    if flavor == "p":
+    if plurality == "plural" or plurality == "uncountable":
+        # there are tons of plural nouns. give the others a better chance
         if random.random() < 0.5:
+            return pick_noun()
+        if random.random() < 0.75:
             return noun
         else:
-            return random.choice((
-                "the " + noun,
-                "my " + noun
-            ))
+            return random.choice(("the", "my")) + " " + noun
+    if plurality == "articled":
+        return noun      
 
 def generate():
-    s = "Is it {} to {} {}?"
-    s = s.format(
+    s = "Is it {} to {} {}".format(
         pick_innocence(),
-        random.choice(verbs),
+        random.choice(curated.verbs),
         pick_noun() 
     )
+    if random.random() < 0.98:
+        s = s + "?"
+    else:
+        s = s + " " + random.choice((
+            "every day",
+            "once a week",
+            "in the middle of the night",
+            "when nobody is looking"
+        )) + "?"
     return s
 
 if __name__ == "__main__":
