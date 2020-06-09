@@ -1,4 +1,9 @@
 """
+This script is no longer used.
+The bot now posts to Mastodon instead.
+"""
+
+"""
 I wish I had a better solution. :(
 Let me know if you discover one,
 or if Twitter adds poll support to its API.
