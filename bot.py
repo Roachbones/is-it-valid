@@ -22,6 +22,6 @@ def post_question():
     mastodon.status_post(status, poll=poll)
     print("done! :3")
 
-while True and 0:
+while True:
     post_question()
-    sleep(SECONDS_BETWEEN_TWEETS)
+    sleep(SECONDS_BETWEEN_POSTS)
