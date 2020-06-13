@@ -33,16 +33,18 @@ def pick_noun():
         return random.choice((
             p.a(noun),
             "the " + noun,
-            "my " + noun
-        ))
+            "your " + noun
+        )) #every, any
     if plurality == "plural" or plurality == "uncountable":
         # there are tons of plural nouns. give the others a better chance
         if random.random() < 0.5:
             return pick_noun()
-        if random.random() < 0.75:
+        if random.random() < 0.70:
             return noun
         else:
-            return random.choice(("the", "my")) + " " + noun
+            return random.choice(("the", "your")) + " " + noun
+            #plural: all, a few, several, many
+            #uncountable: all, a little, a lot of
     if plurality == "articled":
         return noun      
 
